@@ -1,0 +1,113 @@
+.header {
+  margin: 50px 0 0;
+  height: 80px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 50px;
+  box-shadow: 0.5px 1px 20px #000;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+  opacity: 0.99;
+}
+
+.list {
+  position: relative;
+  opacity: 0.99;
+
+  .layout-main {
+    padding: 20px 10px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0.1px 0.5px 5px #000;
+    opacity: 0.99;
+
+    .action {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+
+      & > button i {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .layout-1 {
+    left: 1%;
+    top: 3%;
+    width: 98%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    z-index: -1;
+    box-shadow: 0.1px 0.5px 3px #000;
+    opacity: 0.99;
+  }
+
+  .layout-2 {
+    left: 2%;
+    top: 6%;
+    width: 96%;
+    height: 100%;
+    position: absolute;
+    background: #FFF;
+    border-radius: 10px;
+    z-index: -2;
+    box-shadow: 0.1px 0.5px 1px #000;
+  }
+
+  .item {
+    font-size: 23px;
+    display: flex;
+    border-bottom: 1px solid silver;
+    align-items: center;
+    height: 50px;
+    transition: 300ms;
+    user-select: none;
+    cursor: pointer;
+
+    &.done {
+      opacity: 0.6;
+
+      .work {
+        text-decoration: line-through;
+      }
+    }
+
+    .state {
+      width: 50px;
+      justify-content: center;
+      display: flex;
+
+      img {
+        height: 23px;
+        width: auto;
+        -webkit-transition: opacity 1s ease-in-out;
+        -moz-transition: opacity 1s ease-in-out;
+        -o-transition: opacity 1s ease-in-out;
+        transition: opacity 1s ease-in-out;
+
+        &:hover {
+           opacity:0;
+        }
+      }
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .work {
+      flex-grow: 1;
+    }
+
+    .duedate {
+      width: 150px;
+    }
+  }
+}
