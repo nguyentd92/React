@@ -1,12 +1,14 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.scss';
 import Todo from './components/Todo';
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
-    this.state = { todoList: [
+    this.state = {
+      filter: 0,
+      todoList: [
         {
           work: 'We have to buy some food',
           state: false,
@@ -41,8 +43,8 @@ class App extends Component {
   }
 
   setTodoItemState(item) {
-    const {state} = item;
-    const {todoList} = this.state;
+    const { state } = item;
+    const { todoList } = this.state;
     const index = todoList.indexOf(item)
     todoList.splice(index, 1, {
       ...item,
@@ -55,7 +57,22 @@ class App extends Component {
     })
   }
 
+  setFilter(value) {
+    this.setState({
+      filter: value
+    })
+  }
+
   render() {
+
+    const filter = {
+      all: 0,
+      done: 1,
+      pending: 2
+    }
+
+
+
     return (<div className="App">
       <div className="container">
         <div className="header">
@@ -63,7 +80,22 @@ class App extends Component {
         </div>
         <div className="list">
           <div className="layout-main">
-            {this.state.todoList.map((item, key) => <Todo key={key} item={item} onClick={this.onItemClicked(item)}/>)}
+            {this.state.todoList.map((item, key) => {
+              const component = <Todo key={key} item={item} onClick={this.onItemClicked(item)} />
+              if (this.state.filter === 0) {
+                return component
+              }
+              if (this.state.filter === 1) {
+                if (item.state) {
+                  return component
+                }
+              } else {
+                if (!item.state) {
+                  return component
+                }
+              }
+              }
+              )}
             <div className="action">
               <button className="btn blue-gradient">
                 <i className="fas fa-plus"></i>
@@ -71,9 +103,9 @@ class App extends Component {
               <span></span>
               <span></span>
               <div>
-                <button type="button" className="btn btn-outline-default waves-effect">All</button>
-                <button type="button" className="btn btn-outline-default waves-effect">Done</button>
-                <button type="button" className="btn btn-outline-default waves-effect">Pending</button>
+                <button type="button" className="btn btn-outline-default waves-effect" onClick={() => this.setFilter(0)}>All</button>
+                <button type="button" className="btn btn-outline-default waves-effect" onClick={() => this.setFilter(1)}>Done</button>
+                <button type="button" className="btn btn-outline-default waves-effect" onClick={() => this.setFilter(2)}>Pending</button>
               </div>
             </div>
           </div>
